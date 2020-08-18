@@ -38,6 +38,6 @@ class User extends Authenticatable
     ];
 
     public function orcamentos(){
-        return $this->hasMany(Orcamentos::class);
+        return $this->hasMany(Orcamentos::class);   //User pode ter vários Orçamentos
     }
 }

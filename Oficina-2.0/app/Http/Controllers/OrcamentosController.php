@@ -25,6 +25,7 @@ class OrcamentosController extends Controller
     public function index()
     {
         $orcamentos = Orcamentos::orderBy('created_at', 'desc');	//Ordena os orçamentos com base na data de cadastro, de forma decrescente
+        
         return view('/home');
     }
 
@@ -33,8 +34,10 @@ class OrcamentosController extends Controller
 
     	//Função que armazena os dados cadastrados no banco de dados
 
+        $orcamento = new Orcamentos;
+        $orcamento->user_id = auth()->user()->id;
+
     	$data = request()->validate([
-    		
     		'orcamento_id' => ['required', 'integer', 'max:8', 'unique:orcamentos'],
             'cliente' => ['required', 'string', 'max:255'],
             'data' => ['required', 'string'],
@@ -48,7 +51,6 @@ class OrcamentosController extends Controller
 
     	auth()->user()->orcamentos()->create([
     		
-
     		'orcamento_id'=>$data['orcamento_id'], 
     		'cliente'=>$data['cliente'], 
     		'data'=>$data['data'], 
@@ -66,21 +68,4 @@ class OrcamentosController extends Controller
 
 
 
-
-
-
-    /*public function store(Request $request){
-
-    	
-    		$orcamento = new Orcamentos;
-    		$orcamento->id = $request->id;
-    		$orcamento->cliente = $request->cliente;
-    		$orcamento->data = $request->data;
-    		$orcamento->hora = $request->hora;
-    		$orcamento->vendedor = $request->vendedor;
-    		$orcamento->descricao = $request->descricao;
-    		$orcamento->valor = $request->valor;
-
-    		return redirect()->route('home')->with('message', 'Orçamento criado com sucesso!');
-    }*/
 

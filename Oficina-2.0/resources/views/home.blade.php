@@ -72,6 +72,7 @@
 
 
                     <div class="container">
+                       
                         @if(isset($details))
                             <p> Resultados encontrados: <b> {{ $query }} </b></p>
                         <br>
@@ -101,6 +102,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                            
+                        @else
+                            <p>Nenhum orçamento encontrado</p>
                         @endif
                     </div>
 
